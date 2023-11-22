@@ -17,7 +17,7 @@ import applicationRoutes from '@root/routes';
 const SERVER_PORT = 5000;
 const log: Logger = config.createLogger('server');
 
-export class TmdbServer {
+export class SantexServer {
   private readonly app: Application;
 
   constructor(app: Application) {

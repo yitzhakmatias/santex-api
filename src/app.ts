@@ -1,6 +1,6 @@
 import express, { Express } from 'express';
 import { config } from '@root/config';
-import { TmdbServer } from '@root/setupServer';
+import { SantexServer } from '@root/setupServer';
 import sequelize from '@root/setupDb';
 import '@movie/models/movie.schema';
 import '@rating/models/rating.schema';
@@ -10,7 +10,7 @@ class Application {
     await sequelize.sync({ force: true });
     const app: Express = express();
     app.use(express.json());
-    const server: TmdbServer = new TmdbServer(app);
+    const server: SantexServer = new SantexServer(app);
     server.start();
   }
   private loadingConfig(): void {
