@@ -22,15 +22,11 @@ To run this project, you will need to add the following environment variables to
 
 `CLIENT_URL=http://localhost:5000`
 
-`DB_HOST=localhost`
+`API_KEY=ff1698c6d12f47209d06150daaef0951`
 
-`DB_PORT=5432`
+`API_URL=https://api.football-data.org/v4`
 
-`DB_NAME=tmdb`
-
-`DB_USER=admin`
-
-`DB_PASSWORD=password`
+`DB_STORAGE=Santex.sqlite`
 
 
 ## Run Locally
