@@ -7,8 +7,10 @@ export class LeagueController {
     try {
       const { leagueCode } = req.params;
       leagueService.getLeagueFromAPI(leagueCode).then(() => {
-        res.status(HTTP_STATUS.OK).json({ message: 'League was read !!' });
+        res.status(HTTP_STATUS.OK).json({ message: 'League was added !!' });
       });
-    } catch (error) {}
+    } catch (error) {
+      res.status(HTTP_STATUS.EXPECTATION_FAILED).json({ message: 'League was not found !!' });
+    }
   }
 }

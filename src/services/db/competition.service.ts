@@ -2,12 +2,16 @@ import { CompetitionAttributes } from '@features/competition/interfaces/competit
 import Logger from 'bunyan';
 import { config } from '@root/config';
 import Competition from '@features/competition/model/competition.schema';
+import Team from '@features/team/model/team.schema';
+import { CompetitionTeam } from '@global/associations/competitionTeam';
+import Player from '@features/player/model/player.schema';
+
 //import Team from '@features/team/model/team.schema';
 
 const log: Logger = config.createLogger('CompetitionService');
 
 class CompetitionService {
-  public async saveCompetition(competition: CompetitionAttributes): Promise<void> {
+  public async saveCompetition(competition: CompetitionAttributes, teams: Team[]): Promise<void> {
     try {
       Competition.findOne({
         where: {
@@ -15,41 +19,34 @@ class CompetitionService {
         }
       })
         .then(async (res) => {
-          const team = {
-            name: 'test',
-            tla: '123',
-            areaName: 'asdfasd',
-            address: 'asdfasd',
-            shortName: 'asdfasdfsad',
-            type: 'player'
-          };
-          const team2 = {
-            name: 'test',
-            tla: '1234',
-            areaName: 'asdfasd',
-            address: 'asdfasd',
-            shortName: 'asdfasdfsad',
-            type: 'player'
-          };
-          if (!res) {
-            await Competition.create(
-              { ...competition, teams: [{ ...team }, { ...team2 }] },
-              {
-                include: 'teams'
-              }
-            );
-            /*const createdCompetition = await Competition.create(
-              { ...competition },
-              {
-                include: ['teams']
-              }
-            );*/
+          let compValue: Competition = new Competition();
+          let competitionId;
+          if (res) {
+            //competitionId = res.id;
+            return;
+          } else {
+            compValue = await Competition.create({ ...competition });
+            competitionId = compValue.dataValues.id;
+          }
 
-            // Add teams to the created competition
-            //await createdCompetition.addTeams([team, team2]);
-            /* competition1.set('teams', { team2 });
-            await competition1.save();*/
-            // team1.addCompetition(competition1);
+          for (const team of teams) {
+            const existingTeam = await Team.findOne({
+              where: {
+                name: team.name
+              }
+            });
+            let teamId;
+            if (existingTeam?.id) {
+              teamId = existingTeam.id;
+            } else {
+              const teamValue = await Team.create({ ...team });
+              teamId = teamValue.dataValues.id;
+            }
+
+            await CompetitionTeam.create({ competitionId: competitionId, teamId: teamId });
+            for (const player of team.players) {
+              await Player.create({ ...player, teamId: teamId });
+            }
           }
         })
         .catch((err) => {

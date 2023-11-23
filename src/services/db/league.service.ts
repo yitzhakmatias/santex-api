@@ -1,7 +1,6 @@
 import Logger from 'bunyan';
 import { config } from '@root/config';
 import { competitionService } from '@root/services/db/competition.service';
-import teamSchema from '@features/team/model/team.schema';
 
 const log: Logger = config.createLogger('LeagueService');
 
@@ -21,9 +20,7 @@ class LeagueService {
         .then((res) => res.json())
         .then((data) => {
           const { name, code, area } = data;
-          competitionService.saveCompetition({ name, code, areaName: area.name }).then(() => {
-            this.getTeamsFromAPI(leagueCode);
-          });
+          this.getTeamsFromAPI(leagueCode, { name, code, areaName: area.name });
         })
         .catch((error) => {
           log.error(error);
@@ -33,17 +30,52 @@ class LeagueService {
     }
   }
 
-  private async getTeamsFromAPI(leagueCode: string) {
+  private async getTeamsFromAPI(leagueCode: string, competition: { code: string; areaName: string; name: string }) {
     try {
       const url = `${config.API_URL}/competitions/${leagueCode}/teams`;
       fetch(url, options)
         .then((res) => res.json())
-        .then((data) => {
+        .then(async (data) => {
           if (data) {
             const { teams } = data;
-            teams.forEach((team: teamSchema) => {
-              console.log(team);
-            });
+
+            if (teams) {
+              let teamArray = new Array<any>();
+
+              teams.forEach((team: any) => {
+                const coach = team.coach;
+                const squad = team.squad;
+                const players = new Array<any>();
+                players.push({
+                  name: coach.name,
+                  position: '',
+                  dateOfBirth: coach.dateOfBirth,
+                  nationality: coach.nationality,
+                  type: 'coach'
+                });
+                squad.forEach((player: any) => {
+                  players.push({
+                    name: player.name,
+                    position: player.position,
+                    dateOfBirth: player.dateOfBirth,
+                    nationality: player.nationality,
+                    type: 'player'
+                  });
+                });
+                console.log(squad);
+                console.log(coach);
+
+                teamArray.push({
+                  name: team.name,
+                  tla: team.tla,
+                  areaName: team.area.name,
+                  address: team.address,
+                  shortName: team.shortName,
+                  players: players
+                });
+              });
+              await competitionService.saveCompetition(competition, teamArray);
+            }
           }
         })
         .catch((error) => {

@@ -3,4 +3,5 @@ export interface PlayerAttributes {
   position: string;
   dateOfBirth: Date;
   nationality: string;
+  teamId: number;
 }

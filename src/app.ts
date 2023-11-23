@@ -2,7 +2,7 @@ import express, { Express } from 'express';
 import { config } from '@root/config';
 import { SantexServer } from '@root/setupServer';
 import sequelize from '@root/setupDb';
-import '@global/associations';
+
 class Application {
   public async initialize(): Promise<void> {
     this.loadingConfig();
