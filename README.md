@@ -1,13 +1,13 @@
 # Santex API Node.js Application
 
-This is a Node.js application for TMDB (The Movie Database) API.
+This is a Node.js application for www.football-data.org API.
 
 ## Prerequisites
 
 Before running the application, ensure you have the following prerequisites installed:
 
 - Node.js (https://nodejs.org/)
-- PostgreSQL database (https://www.postgresql.org/)
+- squelize database 
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
