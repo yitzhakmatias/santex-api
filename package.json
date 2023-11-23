@@ -18,6 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node-fetch": "^2.6.6",
+    "@types/sequelize": "^4.28.19",
     "bcryptjs": "^2.4.3",
     "bullmq": "^4.8.0",
     "bunyan": "^1.8.15",
@@ -54,6 +55,7 @@
     "@types/jsonwebtoken": "^9.0.2",
     "@types/lodash": "^4.14.197",
     "@types/mocha": "^10.0.2",
+    "@types/node": "^20.9.4",
     "@types/sqlite3": "^3.1.11",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
