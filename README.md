@@ -1,4 +1,4 @@
-# TMDB API Node.js Application
+# Santex API Node.js Application
 
 This is a Node.js application for TMDB (The Movie Database) API.
 
@@ -32,7 +32,6 @@ To run this project, you will need to add the following environment variables to
 
 `DB_PASSWORD=password`
 
-`MOVIEDB_BEARER=<YOUR_BEARER>`
 
 ## Run Locally
 
