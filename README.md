@@ -51,7 +51,7 @@ Start the server
 Use an API client (e.g., Postman) to make requests to the API endpoints.
 Refer to your API documentation for available endpoints and usage.
 
-To set league
+To seed league in db
 ```javascript
 curl --location 'http://localhost:5000/api/v1/importLeague/PD' 
 ```
