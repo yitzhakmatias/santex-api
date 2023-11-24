@@ -51,7 +51,7 @@ Start the server
 Use an API client (e.g., Postman) to make requests to the API endpoints.
 Refer to your API documentation for available endpoints and usage.
 
-To seed league in db
+To seed league in db Note league code should be 'PD, CL, PL' since limited access to https://api.football-data.org/v4
 ```javascript
 curl --location 'http://localhost:5000/api/v1/importLeague/PD' 
 ```
@@ -88,7 +88,10 @@ docker run -d -p 5000:5000 --name node-app santex
 It creates a docker image and docker container 
 
 ## Unit test
-
+In order to run it you should seed first the db by using 
+```javascript
+curl --location 'http://localhost:5000/api/v1/importLeague/PD' 
+```
 To run unit test execute from dev folder 
 ```jsunicoderegexp
 npx cypress open --project src/test
