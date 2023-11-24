@@ -6,8 +6,6 @@ import Team from '@features/team/model/team.schema';
 import { CompetitionTeam } from '@global/associations/competitionTeam';
 import Player from '@features/player/model/player.schema';
 
-//import Team from '@features/team/model/team.schema';
-
 const log: Logger = config.createLogger('CompetitionService');
 
 class CompetitionService {
@@ -22,7 +20,6 @@ class CompetitionService {
           let compValue: Competition = new Competition();
           let competitionId;
           if (res) {
-            //competitionId = res.id;
             return;
           } else {
             compValue = await Competition.create({ ...competition });

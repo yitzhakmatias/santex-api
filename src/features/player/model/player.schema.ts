@@ -22,29 +22,5 @@ class Player extends Model<PlayerAttributes, PlayerCreationAttributes> implement
   @BelongsTo(() => Team)
   team!: Team;
 }
-/*Player.init(
-  {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    position: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    dateOfBirth: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    nationality: {
-      type: DataTypes.STRING,
-      allowNull: false
-    }
-  },
-  {
-    sequelize,
-    modelName: 'Player'
-  }
-);*/
 
 export default Player;

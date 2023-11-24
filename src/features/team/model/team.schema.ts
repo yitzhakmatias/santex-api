@@ -27,38 +27,5 @@ class Team extends Model {
   @HasMany(() => Player)
   players!: Player[];
 }
-/*Team.init(
-  {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    tla: {
-      type: DataTypes.STRING,
-      primaryKey: true,
-      allowNull: false
-    },
-    shortName: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    areaName: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    address: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    type: {
-      type: DataTypes.ENUM('player', 'coach'),
-      allowNull: false
-    }
-  },
-  {
-    sequelize,
-    modelName: 'Team'
-  }
-);*/
 
 export default Team;

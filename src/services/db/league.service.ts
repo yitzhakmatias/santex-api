@@ -18,9 +18,9 @@ class LeagueService {
 
       fetch(url, options)
         .then((res) => res.json())
-        .then((data) => {
+        .then(async (data) => {
           const { name, code, area } = data;
-          this.getTeamsFromAPI(leagueCode, { name, code, areaName: area.name });
+          await this.getTeamsFromAPI(leagueCode, { name, code, areaName: area.name });
         })
         .catch((error) => {
           log.error(error);
@@ -62,9 +62,6 @@ class LeagueService {
                     type: 'player'
                   });
                 });
-                console.log(squad);
-                console.log(coach);
-
                 teamArray.push({
                   name: team.name,
                   tla: team.tla,
