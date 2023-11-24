@@ -12,14 +12,6 @@ Before running the application, ensure you have the following prerequisites inst
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`JWT_TOKEN=thisIsToken`
-
-`NODE_ENV=develop`
-
-`SECRET_COOKIE_ONE=token1`
-
-`SECRET_COOKIE_TWO=token2`
-
 `CLIENT_URL=http://localhost:5000`
 
 `API_KEY=ff1698c6d12f47209d06150daaef0951`
@@ -58,17 +50,27 @@ Start the server
 ## Usage/Examples
 Use an API client (e.g., Postman) to make requests to the API endpoints.
 Refer to your API documentation for available endpoints and usage.
-```javascript
-POST /api/v1/reviews
-{
-"tmdbId": 100
-"userName": "John Doe",
-"rating": 8
-}
-Fetch all reviews of a particular movie along with its information (Title, release date, poster, and overview).
-GET /api/v1/movies/{tmdbId}/reviews
-Fetch all reviews submitted by a specific user.
-GET /api/v1/users/{userName}/reviews
-```
 
+To set league
+```javascript
+curl --location 'http://localhost:5000/api/v1/importLeague/PD' 
+```
+To get teams
+```javascript
+curl --location --request GET 'http://localhost:5000/api/v1/team' \
+--header 'Content-Type: application/json' \
+--data '{
+"teamName":"[team name]",
+  "includePlayers":"[true | false]"
+}' 
+```
+To get players
+```javascript
+curl --location --request GET 'http://localhost:5000/api/v1/players' \
+--header 'Content-Type: application/json' \
+--data '{
+"leagueCode":"[league code]",
+  "teamName":"[team name]"
+}'
+```
 
