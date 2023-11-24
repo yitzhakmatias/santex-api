@@ -26,7 +26,7 @@ To run this project, you will need to add the following environment variables to
 Clone the project
 
 ```bash
-  git clone https://github.com/yitzhakmatias/tmdb_test
+  git clone https://github.com/yitzhakmatias/santex-api
 ```
 
 Go to the project directory
