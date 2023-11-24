@@ -73,4 +73,17 @@ curl --location --request GET 'http://localhost:5000/api/v1/players' \
   "teamName":"[team name]"
 }'
 ```
+## Docker 
+Install docker in your local environment <https://docs.docker.com/engine/install/>
+
+To run in docker execute the following commands in cmd 
+```javascript
+docker build -t santex .
+```
+and after
+
+```javascript
+docker run -d -p 5000:5000 --name node-app santex
+```
+It creates a docker image and docker container 
 
