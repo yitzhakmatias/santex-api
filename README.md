@@ -87,3 +87,9 @@ docker run -d -p 5000:5000 --name node-app santex
 ```
 It creates a docker image and docker container 
 
+## Unit test
+
+To run unit test execute from dev folder 
+```jsunicoderegexp
+npx cypress open --project src/test
+```
