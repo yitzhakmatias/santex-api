@@ -12,27 +12,4 @@ class Competition extends Model {
   @BelongsToMany(() => Team, () => CompetitionTeam)
   teams!: Team[];
 }
-
-/*Competition.init(
-  {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    code: {
-      type: DataTypes.STRING,
-      primaryKey: true,
-      allowNull: false
-    },
-    areaName: {
-      type: DataTypes.STRING,
-      allowNull: false
-    }
-  },
-  {
-    sequelize,
-    modelName: 'Competition'
-  }
-);*/
-
 export default Competition;
